@@ -173,7 +173,7 @@ class CliffJumper:
         Returns a list drawn from [0, 1, 2].
         """
         # coasting is always allowed
-        moves = [0, 1, 2]
+        moves = [2]
 
         # thrusting left needs a column to the left of the car
         if self.carCol > 0:
