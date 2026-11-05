@@ -1,20 +1,25 @@
-## Project Template: AI Algorithm Comparison
+## Cryo Coupe: Cliff Jumper
 
-This repository serves as the template for your course project. Below is an explanation of the structure of the project and the purpose of each file. Your project must retain this basic structure. As you progress, you should add details about your specific project to this readme (e.g., Replace "This file will contain the implementations of the AI algorithms/agents used in your project" with "This file contains the implementations of the X, Y, and Z algorithms..."). 
+A Tesla Roadster jummps off a cliff, it dodges obsacles with help of cold-gas thrusters. Our goal is to demonstrate how Q-Learning compares against hand written baselines. 
 
 ---
 
 ## Repository Structure
 The repository includes the following files:
 
-### 1. `algorithms.py`  
-This file will contain the implementations of the AI algorithms/agents used in your project.  
-- Ensure your code is well-documented with comments explaining each algorithm.
+### 1. `problems.py`  
+Starts with a `makeRow()` function that creates new rows, with randomly assigned obstacles. The `CliffJumper` class, encapsulates; 
+    - `reset()` which helps start a new episode with the car in the center column. It helps reset the game, and return to a starting state. 
+    - `_state()` encodes what the agents sees, which starts with its own column in addition to the next row. 
+    - `step()` allows the agent to take one step,, with actions that allow it to thrust left right, and coast.
+    - `getLegalMoves()` Defines the moves that are considered legal for the agent. 
+    - `showState` Draws the state in a window and waits a few milliseconds. 
 
-### 2. `comparisons.py`  
-This file will contain the code for performing comparisons between your selected algorithms.  
-- The file should be able to perform **all comparisons** described in your report when executed.  
-- **Recommended Feature:** Include a setting to run a subset of comparisons for testing purposes.  
+### 2. `algorithms.py`
+Contains `RandomAgent` class that contains the `getMove()` funtion that allows the random agent to get all the legal moves the agent is allowed to make. The final report will contain `NearestOpen`, which will try to pick the nearest open reachable cell,  `CenterSeeking` which attempts to stay safe, and then drift to the center column, and lastly `QAgent` the learning algorithm, that will use a q-table to record past states. 
+
+### 3. `comparisons.py`  
+This file will contain the code for performing comparisons between your selected algorithms. This portion has not yet been built. 
 
 ### 3. `demo.py`  
 This file will provide a brief demonstration of your project.
@@ -33,9 +38,9 @@ This file will contain the implementation of the problems you are solving with y
 
 ---
 
-## Instructions for Students
+## Setup Instructions
 
-### Step 0: Prepare Python Environment
+### Step 1: Prepare Python Environment
 These instructions will setup the evaluation environment we will use to evaluate your project. Use this environment (without addition or modification) to make sure your code will run the same on our machines.
 - Download and install [Anaconda](https://www.anaconda.com/download)
 - Open Terminal (or Anaconda prompt in Windows)
@@ -44,26 +49,10 @@ These instructions will setup the evaluation environment we will use to evaluate
 - `pip install --upgrade pip`
 - `pip install -r requirements.txt`
 
-### Step 1: Clone the Repository
-Click the green "Use this template" button in the upper right, and create your own copy of the repository. Next, clone your new repository to your local machine:  
-```
-git clone <your_repo>
-```
-Test your repository/environment:  
+### Step 1.1: Activate Python Environment
 - Open Terminal (or Anaconda prompt in Windows)
 - `conda activate evalenv`
+  
+### Step 2: Run demo.py
 - Open project directory: `cd <your_directory>`
 - `python demo.py`
-  
-### Step 2: Code Your Project
-- Define your problems in [`problems.py`](./problems.py).
-- Implement your algorithms in [`algorithms.py`](./algorithms.py).
-- Write the comparison logic in [`comparisons.py`](./comparisons.py).
-- Create the demonstrations in [`demo.py`](./demo.py).
-
-For detailed instructions, refer to "Course Project Instructions" under "Content" on the D2L page.
-
-### Step 3: Commit Regularly
-- Ensure at least 10 commits are made BEFORE the progress report submission deadline.
-- Ensure at least 10 commits are made AFTER the progress report submission deadline.
-- Make detailed commit messages describing what was added or changed.
