@@ -184,3 +184,34 @@ class CliffJumper:
             moves.append(1)
 
         return moves
+
+    def showState(self, ms=300):
+        """
+        Draw the current screen in a window and wait `ms` milliseconds.
+        """
+        # size of one cell in pixels
+        cellSize = 50
+
+        # blank color image: (height + 1) rows tall because the car gets its own row
+        screen = np.zeros(
+            ((self.height + 1) * cellSize, self.width * cellSize, 3), dtype=np.uint8
+        )
+
+        # draw each obstacle cell, starting one row below the car's row
+        for row in range(self.height):
+            for col in range(self.width):
+                if self.grid[row][col] == 1:
+                    # cv2 points are (x, y), so x comes from the column and y from the row
+                    topLeft = (col * cellSize, (row + 1) * cellSize)
+                    bottomRight = ((col + 1) * cellSize - 1, (row + 2) * cellSize - 1)
+                    screen = cv2.rectangle(
+                        screen, topLeft, bottomRight, (200, 200, 200), -1
+                    )
+
+        # draw the car in the top row
+        carTopLeft = (self.carCol * cellSize, 0)
+        carBottomRight = ((self.carCol + 1) * cellSize - 1, cellSize - 1)
+        screen = cv2.rectangle(screen, carTopLeft, carBottomRight, (255, 150, 0), -1)
+
+        cv2.imshow("Cryo Coupe", screen)
+        cv2.waitKey(ms)
