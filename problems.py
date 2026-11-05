@@ -117,3 +117,52 @@ class CliffJumper:
 
         # car column picks the block of 2**width states, rowBits picks inside it
         return int(self.carCol * (2**self.width) + rowBits)
+
+    def step(self, action):
+        """
+        Advance one step.
+        action: 0 = thrust left, 1 = thrust right, 2 = coast.
+        Returns (state, reward, crashed, done).
+        """
+        # column change for each action: left = -1, right = +1, coast = 0
+        move = [-1, 1, 0][action]
+
+        # True when the action is left or right
+        thrusted = action < 2
+
+        # thrust first
+        self.carCol = self.carCol + move
+        crashed = False
+
+        # wall check: off the screen on either side is a crash
+        if self.carCol < 0 or self.carCol >= self.width:
+            crashed = True
+        else:
+            # the row arriving at the car is the next row
+            arrivingRow = self.grid[0]
+
+            # collision check: is there an obstacle where the car is?
+            if arrivingRow[self.carCol] == 1:
+                crashed = True
+
+            # scroll: drop row 0, append a new random row at the end
+            newRow = makeRow(
+                self.rng, self.obstacleProb, self.twoObstacleProb, self.width
+            )
+            self.grid = np.vstack((self.grid[1:], newRow))
+
+        self.stepCount += 1
+
+        # reward
+        if crashed:
+            print("CRASH!")
+            reward = self.crashReward
+        else:
+            reward = self.surviveReward
+            if thrusted:
+                reward = reward - self.thrustCost
+
+        # episode ends on a crash or when the step limit is reached
+        done = crashed or self.stepCount >= self.maxSteps
+
+        return self._state(), reward, crashed, done
