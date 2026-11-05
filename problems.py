@@ -71,7 +71,7 @@ class CliffJumper:
 
         # sizes the Q-agent will need
         self.numActions = 3
-        self.numStates = width * (2**width)
+        self.numStates = self.width * (2**self.width)
 
         # state variables
         self.grid = None
@@ -101,6 +101,19 @@ class CliffJumper:
 
         return self._state()
 
-    # placeholder
     def _state(self):
-        return 0
+        """
+        Encode what the agent sees: its column plus the next row.
+        Returns an int.
+        """
+        # the agent sees only the next row
+        nextRow = self.grid[0]
+
+        # read the 0/1 cells as a binary number, leftmost cell = highest bit
+        rowBits = 0
+        for cell in nextRow:
+            # shift the running total left by one bit, then add this cell
+            rowBits = rowBits * 2 + cell
+
+        # car column picks the block of 2**width states, rowBits picks inside it
+        return int(self.carCol * (2**self.width) + rowBits)
