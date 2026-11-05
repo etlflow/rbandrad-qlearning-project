@@ -80,24 +80,27 @@ class CliffJumper:
         self.reset()
 
     def reset(self):
-      '''
-      Start a new episode: fresh random rows, car in the center column.
-      Only the game is reset. Returns the starting state.
-      '''
-      # build `height` random rows, then stack them into a 2D array
-      rows = [makeRow(self.rng, self.obstacleProb, self.twoObstacleProb, self.width) for _ in range(self.height)]
-      
-      # defines the grid as a 2d numpy array
-      self.grid = np.array(rows)
+        """
+        Start a new episode: fresh random rows, car in the center column.
+        Only the game is reset. Returns the starting state.
+        """
+        # build `height` random rows, then stack them into a 2D array
+        rows = [
+            makeRow(self.rng, self.obstacleProb, self.twoObstacleProb, self.width)
+            for _ in range(self.height)
+        ]
 
-      # car starts in the center column
-      self.carCol = self.width // 2
+        # defines the grid as a 2d numpy array
+        self.grid = np.array(rows)
 
-      # no steps taken yet
-      self.stepCount = 0
+        # car starts in the center column
+        self.carCol = self.width // 2
 
-      return self._state()
-      
+        # no steps taken yet
+        self.stepCount = 0
+
+        return self._state()
+
     # placeholder
     def _state(self):
-      return 0    
+        return 0
