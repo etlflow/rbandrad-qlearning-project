@@ -1,6 +1,5 @@
 ## Cryo Coupe: Cliff Jumper
-
-A Tesla Roadster jummps off a cliff, it dodges obsacles with help of cold-gas thrusters. Our goal is to demonstrate how Q-Learning compares against hand written baselines. 
+A Tesla Roadster jumps off a cliff, it dodges obsacles with help of cold-gas thrusters. Our goal is to demonstrate how Q-Learning compares against hand written baselines. 
 
 ---
 
@@ -22,19 +21,7 @@ Contains `RandomAgent` class that contains the `getMove()` funtion that allows t
 This file will contain the code for performing comparisons between your selected algorithms. This portion has not yet been built. 
 
 ### 3. `demo.py`  
-This file will provide a brief demonstration of your project.
-
-#### Submission Requirements:
-- **Progress Report:** Demonstrate *random agents* attempting to solve each problem.  
-- **Final Report:** Demonstrate *each algorithm* attempting to solve at least one problem.  
-
-#### Guidelines for Demonstrations:
-Keep the demonstrations concise but meaningful to highlight key behaviors. Some agent types (e.g., random agents) may struggle or fail to solve a problem. Some problems may take a long time to complete (e.g., a full game of chess). In such cases, you should cut off the demonstration after a representative sample of the agent's behavior and problem mechanics has been shown. 
-
-### 4. `problems.py`  
-This file will contain the implementation of the problems you are solving with your AI algorithms.  
-- Ensure that the problems are clearly defined and modular, so the algorithms can be easily tested on each.  
-- For the **progress report**, this file should be fully implemented and require no major edits afterward.
+The demonstration script lets us run the project to see the starting state (screen). For each step in the range of steps allowed, the agent has to pick a legal move, the `step()` function returns state, reward, crashed, or done. It displays the final state then closes the demo window.
 
 ---
 
