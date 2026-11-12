@@ -238,7 +238,7 @@ class CoinCatcher:
         self.width = width
         self.lookahead = lookahead
         self.maxSteps = maxSteps
-        
+
         # rewards for catching a coin
         self.catchReward = 1
 
@@ -250,7 +250,7 @@ class CoinCatcher:
 
         # sizes the agents will need
         self.numActions = 3
-        self.numStates = None
+        self.numStates = self.width * 2 ** (self.width * self.lookahead)
 
         # state variables, filled in by reset()
         self.grid = None
@@ -258,3 +258,7 @@ class CoinCatcher:
         self.stepCount = None
 
         self.reset()
+    
+    # stub for reset method
+    def reset(self):
+        pass
