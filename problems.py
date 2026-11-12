@@ -269,3 +269,13 @@ class CoinCatcher:
             makeRow(self.rng, self.coinProb, self.twoCoinProb, self.width)
             for _ in range(self.lookahead)
         ]
+
+        self.grid = np.array(rows)
+
+        # paddle starts in the center column
+        self.paddleCol = self.width // 2
+
+        # no steps taken yet
+        self.stepCount = 0
+
+        return self._state()
