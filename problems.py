@@ -242,7 +242,7 @@ class CoinCatcher:
         # rewards for catching a coin
         self.catchReward = 1
 
-        # for a row the paddle does not catch
+        # cost for missing a row with coins that the paddle misses 
         self.missReward = -0.5
 
         # random number generator
