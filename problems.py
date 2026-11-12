@@ -215,3 +215,26 @@ class CliffJumper:
 
         cv2.imshow("Cryo Coupe", screen)
         cv2.waitKey(ms)
+
+class CoinCatcher:
+    """
+    Coin Catcher.
+    A paddle moves along the bottom and tries to catch falling coins.
+    Actions: 0 = move left, 1 = move right, 2 = stay.
+    """
+
+    def __init__(
+        self,
+        coinProb=0.5,
+        twoCoinProb=0.5,
+        seed=None,
+        width=3,
+        lookahead=2,
+        maxSteps=200,
+    ):
+        # game settings (stored so reset/step can use them later)
+        self.coinProb = coinProb
+        self.twoCoinProb = twoCoinProb
+        self.width = width
+        self.lookahead = lookahead
+        self.maxSteps = maxSteps
