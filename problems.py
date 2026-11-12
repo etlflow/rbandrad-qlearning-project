@@ -238,3 +238,23 @@ class CoinCatcher:
         self.width = width
         self.lookahead = lookahead
         self.maxSteps = maxSteps
+        
+        # rewards for catching a coin
+        self.catchReward = 1
+
+        # for a row the paddle does not catch
+        self.missReward = -0.5
+
+        # random number generator
+        self.rng = np.random.default_rng(seed)
+
+        # sizes the agents will need
+        self.numActions = 3
+        self.numStates = None
+
+        # state variables, filled in by reset()
+        self.grid = None
+        self.paddleCol = None
+        self.stepCount = None
+
+        self.reset()
