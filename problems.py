@@ -279,3 +279,18 @@ class CoinCatcher:
         self.stepCount = 0
 
         return self._state()
+
+    def _state(self):
+        """
+        Encode what the agent sees: its column plus every visible row.
+        Returns an int.
+        """
+        # read every cell, first row first, as one long binary number
+        gridBits = 0
+
+        for cell in self.grid.flatten():
+            # shift the running total left by one bit, then add this cell
+            gridBits = gridBits * 2 + cell
+
+        # paddle column picks the block of 2**(width * lookahead) states
+        return int(self.paddleCol * 2**(self.width * self.lookahead) + gridBits)
