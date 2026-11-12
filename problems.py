@@ -259,6 +259,13 @@ class CoinCatcher:
 
         self.reset()
     
-    # stub for reset method
     def reset(self):
-        pass
+        """
+        Start a new episode: fresh random rows, paddle in the center column.
+        Returns the starting state.
+        """
+        # build `lookahead` random rows of coins, then stack them into a 2D array
+        rows = [
+            makeRow(self.rng, self.coinProb, self.twoCoinProb, self.width)
+            for _ in range(self.lookahead)
+        ]
