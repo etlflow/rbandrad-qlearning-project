@@ -1,5 +1,5 @@
 """
-This file will contain your the code for your problems.
+This file contains the code for the Cryo Coupe: Cliff Jumper problem.
 """
 
 import numpy as np
@@ -44,7 +44,7 @@ class CliffJumper:
         self,
         obstacleProb=0.5,
         twoObstacleProb=0.5,
-        seed=42,
+        seed=None,
         width=5,
         height=5,
         maxSteps=500,
@@ -63,7 +63,7 @@ class CliffJumper:
         # on a crash
         self.crashReward = -10
 
-        # movment of left/right only; coasting is free
+        # movement of left/right only; coasting is free
         self.thrustCost = 0.2
 
         # random number generator
