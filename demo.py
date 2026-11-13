@@ -25,20 +25,20 @@ for env in games:
     # show the starting screen
     env.showState(frameMs)
 
-for step in range(demoSteps):
-    # agent picks one of the legal moves
-    action = agent.getMove(env)
+    for step in range(demoSteps):
+        # agent picks one of the legal moves
+        action = agent.getMove(env)
 
-    # step() returns (state, reward, crashed, done) in that order
-    state, reward, crashed, done = env.step(action)
+        # step() returns (state, reward, crashed, done) in that order
+        state, reward, crashed, done = env.step(action)
 
-    print(f"step {step + 1}: action {action}, reward {reward}")
-    env.showState(frameMs)
+        print(f"step {step + 1}: action {action}, reward {reward}")
+        env.showState(frameMs)
 
-    # stop when the episode is over
-    if done:
-        break
+        # stop when the episode is over
+        if done:
+            break
 
-# hold the final frame, then close the window
-cv2.waitKey(2000)
-cv2.destroyAllWindows()
+    # hold the final frame, then close the window
+    cv2.waitKey(2000)
+    cv2.destroyAllWindows()
