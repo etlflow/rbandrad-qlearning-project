@@ -19,8 +19,11 @@ games = [
 ]
 agent = alg.RandomAgent()
 
-# show the starting screen
-env.showState(frameMs)
+for env in games:
+    print(f"{agent} playing {type(env).__name__}")
+
+    # show the starting screen
+    env.showState(frameMs)
 
 for step in range(demoSteps):
     # agent picks one of the legal moves
