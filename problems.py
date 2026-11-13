@@ -347,3 +347,33 @@ class CoinCatcher:
             moves.append(1)
 
         return moves
+
+    def showState(self, ms=300):
+        """
+        Draw the current screen in a window and wait `ms` milliseconds.
+        """
+        # size of one cell in pixels
+        cellSize = 50
+
+        # blank color image: lookahead rows plus one row for the paddle
+        screen = np.zeros(
+            ((self.lookahead + 1) * cellSize, self.width * cellSize, 3), dtype=np.uint8
+        )
+
+        # draw each coin; grid[0] is the row closest to the paddle, so it goes lowest
+        for row in range(self.lookahead):
+            for col in range(self.width):
+                if self.grid[row][col] == 1:
+                    # screen row for this grid row, counting down from the top
+                    screenRow = (self.lookahead - 1) - row
+                    topLeft = (col * cellSize, screenRow * cellSize)
+                    bottomRight = ((col + 1) * cellSize - 1, (screenRow + 1) * cellSize - 1)
+                    screen = cv2.rectangle(screen, topLeft, bottomRight, (0, 215, 255), -1)
+
+        # draw the paddle in the bottom row
+        paddleTopLeft = (self.paddleCol * cellSize, (self.lookahead) * cellSize)
+        paddleBottomRight = ((self.paddleCol + 1) * cellSize - 1, (self.lookahead + 1) * cellSize - 1)
+        screen = cv2.rectangle(screen, paddleTopLeft, paddleBottomRight, (255, 150, 0), -1)
+
+        cv2.imshow("Coin Catcher", screen)
+        cv2.waitKey(ms)
