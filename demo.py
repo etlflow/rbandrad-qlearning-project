@@ -12,8 +12,11 @@ Each game is shown for a limited number of steps, or until the episode ends.
 demoSteps = 100
 frameMs = 300
 
-# a game with a fixed seed so the demo is repeatable, and a random agent
-env = prb.CliffJumper(seed=42)
+# one instance of each game, and one random agent that plays both
+games = [
+    prb.CliffJumper(seed=42),
+    prb.CoinCatcher(seed=42),
+]
 agent = alg.RandomAgent()
 
 # show the starting screen
