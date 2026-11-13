@@ -1,12 +1,12 @@
-import problems as prb
-import algorithms as alg
-import cv2
-
 """
 This file runs a short demonstration of the project.
 A random agent plays each game in turn, Cliff Jumper and then Coin Catcher.
 Each game is shown for a limited number of steps, or until the episode ends.
 """
+
+import problems as prb
+import algorithms as alg
+import cv2
 
 # settings for the demo
 demoSteps = 100
