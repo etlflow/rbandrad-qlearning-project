@@ -294,3 +294,26 @@ class CoinCatcher:
 
         # paddle column picks the block of 2**(width * lookahead) states
         return int(self.paddleCol * 2**(self.width * self.lookahead) + gridBits)
+
+    def step(self, action):
+        """
+        Advance one step.
+        action: 0 = move left, 1 = move right, 2 = stay.
+        Returns (state, reward, crashed, done).
+        """
+        # column change for each action: left = -1, right = +1, stay = 0
+        move = [-1, 1, 0][action]
+
+        # move the paddle, staying on the board
+        self.paddleCol = self.paddleCol + move
+
+        # the row arriving at the paddle is the next row
+        arrivingRow = self.grid[0]
+
+        # reward: empty rows give 0, coin rows give catch or miss
+        if arrivingRow.sum() == 0:
+            reward = 1
+        elif arrivingRow[self.paddleCol] == 1:
+            reward = self.catchReward
+        else:
+            reward = self.missReward
