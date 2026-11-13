@@ -317,3 +317,15 @@ class CoinCatcher:
             reward = self.catchReward
         else:
             reward = self.missReward
+
+        # scroll: drop row 0, append a new random row at the end
+        newRow = makeRow(self.rng, self.coinProb, self.twoCoinProb, self.width)
+        self.grid = np.vstack((self.grid[1:], newRow))
+
+        self.stepCount += 1
+
+        # nothing ends the episode early, only the step limit
+        crashed = False
+        done = self.stepCount >= self.maxSteps
+
+        return self._state(), reward, crashed, done
