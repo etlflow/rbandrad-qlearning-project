@@ -312,7 +312,7 @@ class CoinCatcher:
 
         # reward: empty rows give 0, coin rows give catch or miss
         if arrivingRow.sum() == 0:
-            reward = 1
+            reward = 0
         elif arrivingRow[self.paddleCol] == 1:
             reward = self.catchReward
         else:
