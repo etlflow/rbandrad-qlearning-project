@@ -330,3 +330,20 @@ class CoinCatcher:
 
         return self._state(), reward, crashed, done
 
+    def getLegalMoves(self):
+        """
+        Actions that keep the paddle on the board.
+        Returns a list drawn from [0, 1, 2].
+        """
+        # staying is always allowed
+        moves = [2]
+
+        # moving left needs a column to the left of the paddle
+        if self.paddleCol > 0:
+            moves.append(0)
+
+        # moving right needs a column to the right of the paddle
+        if self.paddleCol < self.width - 1:
+            moves.append(1)
+
+        return moves
