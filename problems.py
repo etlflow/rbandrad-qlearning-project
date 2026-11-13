@@ -305,7 +305,7 @@ class CoinCatcher:
         move = [-1, 1, 0][action]
 
         # move the paddle, staying on the board
-        self.paddleCol = self.paddleCol + move
+        self.paddleCol = max(0, min(self.width - 1, self.paddleCol + move))
 
         # the row arriving at the paddle is the next row
         arrivingRow = self.grid[0]
@@ -329,3 +329,4 @@ class CoinCatcher:
         done = self.stepCount >= self.maxSteps
 
         return self._state(), reward, crashed, done
+
