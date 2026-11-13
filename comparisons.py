@@ -26,3 +26,17 @@ def runRandom(env, agent, episodes):
 
     # averages over all episodes
     return totalReward / episodes, totalSteps / episodes
+
+if 0 in compsToRun:
+    agent = alg.RandomAgent()
+    meanReward, meanSteps = runRandom(prb.CliffJumper(seed=0), agent, 20)
+    print(f"{agent} on Cliff Jumper")
+    print(f"Mean reward per episode: {meanReward:.2f}")
+    print(f"Mean steps per episode: {meanSteps:.2f}")
+
+if 1 in compsToRun:
+    agent = alg.RandomAgent()
+    meanReward, meanSteps = runRandom(prb.CoinCatcher(seed=0), agent, 20)
+    print(f"{agent} on Coin Catcher")
+    print(f"Mean reward per episode: {meanReward:.2f}")
+    print(f"Mean steps per episode: {meanSteps:.2f}")
